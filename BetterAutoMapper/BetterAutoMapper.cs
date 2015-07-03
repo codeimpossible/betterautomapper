@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace BetterAutoMapper
 {
@@ -12,25 +13,56 @@ namespace BetterAutoMapper
 
     public class BetterAutoMapper
     {
-        public TTo Map<TFrom, TTo>(TFrom from)
+        public TTo Map<TFrom, TTo>(TFrom from, bool strict = false)
         {
             var json = GetJson(from);
-            return GetObject<TTo>(json);
+            var obj = GetObject<TTo>(json);
+
+            if (strict)
+            {
+                ValidateStrict(from, obj);
+            }
+
+            return obj;
         }
 
-        public TTo Map<TFrom, TTo>(TFrom from, Func<TFrom, dynamic> transposeFn)
+        public TTo Map<TFrom, TTo>(TFrom from, Func<TFrom, dynamic> transposeFn, bool strict = false)
         {
             var transposed = transposeFn(from);
             IDictionary<string, dynamic> transposedDict = GetDictionary(transposed);
             IDictionary<string, dynamic> sourceDict = GetDictionary(from);
             IDictionary<string, dynamic> merged = Merge(transposedDict, sourceDict);
             var json = GetJson(merged);
-            return GetObject<TTo>(json);
+            var obj = GetObject<TTo>(json);
+
+            if (strict)
+            {
+                ValidateStrict(from, obj);
+            }
+
+            return obj;
+        }
+
+        private void ValidateStrict<TFrom, TTo>(TFrom from, TTo to)
+        {
+            IDictionary<string, dynamic> fromDict = GetDictionary(from);
+            IDictionary<string, dynamic> toDict = GetDictionary(to);
+
+            var diff = fromDict.Except(toDict);
+            if (diff.Count() > 0)
+            {
+                throw new BAMStrictMapViolationException(typeof(TFrom), typeof(TTo), diff.Select(p => p.Key));
+            }
         }
 
         private Dictionary<string, dynamic> GetDictionary<TFrom>(TFrom from)
         {
             var json = GetJson(from);
+            return GetObject<Dictionary<string, dynamic>>(json);
+        }
+
+        private Dictionary<string, dynamic> GetDictionary(string json)
+        {
             return GetObject<Dictionary<string, dynamic>>(json);
         }
 
