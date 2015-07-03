@@ -2,19 +2,7 @@
 
 namespace BetterAutoMapper.Tests
 {
-    public class John
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    }
-
-    public class Jared
-    {
-        public string FirstName { get; set; }
-    }
-
-
-    public class BetterAutoMapperTests
+    public class BasicMappingTests
     {
         [Fact]
         public void ShouldMapClasses()
