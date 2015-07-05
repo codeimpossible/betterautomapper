@@ -24,3 +24,9 @@ var cat = new BetterAutoMapper().Map<Animal, Cat>(animal);
 
 Console.WriteLine(cat.Name) // <- "Fred"
 ```
+
+## Features
+
+ - [Case Insensitive Mapping](https://github.com/codeimpossible/betterautomapper/blob/master/BetterAutoMapper.Tests/PropertyCasing.cs). `someProperty` will map to `SomeProperty` or even `SomEpRopertY`
+ - [Strict maps](https://github.com/codeimpossible/betterautomapper/blob/master/BetterAutoMapper.Tests/StrictMapping.cs). Want to know if you're losing data when mapping? We've got that.
+ - [Property Transposing](https://github.com/codeimpossible/betterautomapper/blob/master/BetterAutoMapper.Tests/PropertyTransposing.cs). Want `FullName` to be `FirstName + " " + LastName`? That's easy. Want to transform data using some of your own code? Yep, totally do-able.
