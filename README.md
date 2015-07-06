@@ -6,23 +6,36 @@ A library to help you map one object, to another with as little code as possible
 ## Examples
 
 ```csharp
-public class Animal
+using System;
+using BetterAutoMapper;
+
+namespace MyProgram
 {
-    public string Name { get; set; }
-	public int Limbs { get; set; }
+    public class Animal
+    {
+        public string Name { get; set; }
+        public int Limbs { get; set; }
+    }
+
+    public class Cat
+    {
+        public string Name { get; set; }
+        public string Limbs { get; set; }
+        public bool HasTail { get; set; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var animal = new Animal { Name = "Fred", Limbs = 4 };
+            var cat = BAM.BOOM.Map<Animal, Cat>(animal);
+
+            Console.WriteLine(cat.Name);
+            Console.ReadLine();
+        }
+    }
 }
-
-public class Cat
-{
-    public string Name { get; set; }
-	public string Limbs { get; set; }
-	public bool HasTail { get; set; }
-}
-
-var animal = new Animal { Name = "Fred", Limbs = 4 };
-var cat = new BetterAutoMapper().Map<Animal, Cat>(animal);
-
-Console.WriteLine(cat.Name) // <- "Fred"
 ```
 
 ## Features
