@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Betterautomapper by codeimpossible</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Betterautomapper</h1>
+      <h2 class="project-tagline">Better Auto Mapper (BAM). It&#39;s the greatest and best mapper in the world (tribute).</h2>
+      <a href="https://github.com/codeimpossible/betterautomapper" class="btn">View on GitHub</a>
+      <a href="https://github.com/codeimpossible/betterautomapper/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/codeimpossible/betterautomapper/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="better-auto-mapper" class="anchor" href="#better-auto-mapper" aria-hidden="true"><span class="octicon octicon-link"></span></a>Better Auto Mapper</h1>
+
+<hr>
+
+<p>A library to help you map one object, to another with as little code as possible.</p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<div class="highlight highlight-csharp"><pre><span class="pl-k">using</span> System;
+<span class="pl-k">using</span> BetterAutoMapper;
+
+<span class="pl-k">namespace</span> <span class="pl-en">MyProgram</span>
+{
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Animal</span>
+    {
+        <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-en">Name</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+        <span class="pl-k">public</span> <span class="pl-k">int</span> <span class="pl-en">Limbs</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Cat</span>
+    {
+        <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-en">Name</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+        <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-en">Limbs</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+        <span class="pl-k">public</span> <span class="pl-k">bool</span> <span class="pl-en">HasTail</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+    }
+
+    <span class="pl-k">class</span> <span class="pl-en">Program</span>
+    {
+        <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">Main</span>(<span class="pl-k">string[]</span> <span class="pl-smi">args</span>)
+        {
+            <span class="pl-k">var</span> animal = <span class="pl-k">new</span> Animal { Name = <span class="pl-s"><span class="pl-pds">"</span>Fred<span class="pl-pds">"</span></span>, Limbs = <span class="pl-c1">4</span> };
+            <span class="pl-k">var</span> cat = BAM.BOOM.Map&lt;Animal, Cat&gt;(animal);
+
+            Console.WriteLine(cat.Name);
+            Console.ReadLine();
+        }
+    }
+}</pre></div>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>
+<a href="https://github.com/codeimpossible/betterautomapper/blob/master/BetterAutoMapper.Tests/PropertyCasing.cs">Case Insensitive Mapping</a>. <code>someProperty</code> will map to <code>SomeProperty</code> or even <code>SomEpRopertY</code>
+</li>
+<li>
+<a href="https://github.com/codeimpossible/betterautomapper/blob/master/BetterAutoMapper.Tests/StrictMapping.cs">Strict maps</a>. Want to know if you're losing data when mapping? We've got that.</li>
+<li>
+<a href="https://github.com/codeimpossible/betterautomapper/blob/master/BetterAutoMapper.Tests/PropertyTransposing.cs">Property Transposing</a>. Want <code>FullName</code> to be <code>FirstName + " " + LastName</code>? That's easy. Want to transform data using some of your own code? Yep, totally do-able.</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Use Nuget! You can check out the <a href="https://www.nuget.org/packages/BetterAutoMapper/">nuget page for more information</a>.</p>
+
+<pre><code>PM&gt; Install-Package BetterAutoMapper
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/codeimpossible/betterautomapper">Betterautomapper</a> is maintained by <a href="https://github.com/codeimpossible">codeimpossible</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
